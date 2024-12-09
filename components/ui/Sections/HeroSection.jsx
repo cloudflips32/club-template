@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button"
 import "@/components/heroSection.scss"
+import Link from 'next/link';
 
 const MatrixEffect = ({particle}) => {
   // Toggle between "0" and "1" and update CSS accordingly
@@ -62,8 +63,14 @@ function HeroSection() {
               </p>
             </div>
             <div className="space-x-4">
-              <Button>Join Now</Button>
-              <Button variant="outline">Learn More</Button>
+              <Link href="#join">
+                <Button>
+                  Join Now
+                </Button>
+              </Link>
+              <Link href="#faq">
+                <Button variant="outline">Learn More</Button>
+              </Link>
             </div>
           </div>
         </div>
