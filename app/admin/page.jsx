@@ -1,13 +1,29 @@
-'use client'
+'use client';
 
 import React, {useState,useRef,useCallback,useEffect} from 'react'
 import { Settings, LogOut } from 'lucide-react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import CalendarAndEvents from '@/components/ui/Sections/calendar-events'
 import Members from '@/components/ui/Sections/members'
 import Link from 'next/link'
 
 export default function AdminDashboard() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loginCredentials, setLoginCredentials] = useState({ username: '', password: '' })
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(true)
+
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -64,9 +80,68 @@ export default function AdminDashboard() {
       buttonRef.current?.focus();
     }
   }, [menuOpen]);
+
+  const handleLogin = () => {
+    // In a real application, you would validate the credentials against a backend
+    if (loginCredentials.username === 'admin' && loginCredentials.password === 'password') {
+      setIsAuthenticated(true)
+      setIsLoginModalOpen(false)
+    } else {
+      alert('Invalid credentials')
+    }
+  }
+
+  const handleLogout = () => {
+    setIsAuthenticated(false)
+    setIsLoginModalOpen(true)
+    setLoginCredentials({ username: '', password: '' })
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <Dialog open={isLoginModalOpen} onOpenChange={setIsLoginModalOpen}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Admin Login</DialogTitle>
+            <DialogDescription>
+              Enter your credentials to access the admin dashboard.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="username" className="text-right">
+                Username
+              </Label>
+              <Input
+                id="username"
+                value={loginCredentials.username}
+                onChange={(e) => setLoginCredentials({ ...loginCredentials, username: e.target.value })}
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="password" className="text-right">
+                Password
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                value={loginCredentials.password}
+                onChange={(e) => setLoginCredentials({ ...loginCredentials, password: e.target.value })}
+                className="col-span-3"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button onClick={handleLogin}>Login</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    )
+  }
   return (
     <>
-      <div className="flex h-screen bg-gray-100">
+      <div className="flex h-screen bg-gray-100 mr-4">
         <header className="px-4 lg:px-6 h-14 flex items-center my-4">
           {/* Mobile menu toggle button */}
           <button
@@ -78,9 +153,9 @@ export default function AdminDashboard() {
             aria-expanded={menuOpen ? 'true' : 'false'} // Update aria-expanded based on menu state
             aria-controls="mobile-menu" // Associating with the mobile menu
           >
-            <span className="block w-6 h-1 bg-black ml-1 mb-1 mr-2 mt-3" />
-            <span className="block w-6 h-1 bg-black ml-1 mb-1 mr-2" />
-            <span className="block w-6 h-1 bg-black ml-1 mr-2" />
+            <span className="block w-6 h-1 bg-black mr-4 mb-1 mt-3" />
+            <span className="block w-6 h-1 bg-black  mb-1 mr-4" />
+            <span className="block w-6 h-1 bg-black mr-4" />
           </button>
 
           {/* Mobile Menu (Side menu) */}
@@ -113,7 +188,7 @@ export default function AdminDashboard() {
               <Link
                 href="/"
                 className="block p-4 text-lg"
-                onClick={(e) => handleSmoothScroll(e, 'homepage')}
+                onClick={handleLogout}
                 aria-label="Navigate to Home page"
               >
                 <div className="flex">

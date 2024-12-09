@@ -45,6 +45,12 @@ npm i -g npm@latest</code>
 
 ---
 
+12/09/2024 Admin Dashboard- [@cloudflips32](https://github.com/cloudflips32) Admin Boilerplate
+
+![fifth-club-PR-merge](/public/images/se-club-contribution-five.png)
+
+---
+
 Current version of app is now viewable from repo!
 
 [Click Here!](https://se-club.vercel.app)

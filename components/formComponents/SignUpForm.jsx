@@ -25,14 +25,11 @@ const SignUpForm = React.forwardRef((placeHolder, ref) => {
     return result;
   }
 
-
-
   // For the reset button!
   function ResetState() {
     setValidName(false);
     setValidEmail(false);
   }
-
 
   return (
     <div className="w-full max-w-sm space-y-2">
