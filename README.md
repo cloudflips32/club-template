@@ -1,4 +1,4 @@
-[![Next](https://img.shields.io/badge/NextJS-v15.0.2-blue.svg?logo=next.js)](https://nextjs.org)
+[![Next](https://img.shields.io/badge/NextJS-v15.0.3-blue.svg?logo=next.js)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-v18-teal.svg?logo=react)](https://react.dev)
 [![Sass](https://img.shields.io/badge/Sass-v1.82.0-pink.svg?logo=sass)](https://sass-lang.com/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-v3.4.1-lightblue.svg?logo=tailwindcss)](https://nextjs.org)
