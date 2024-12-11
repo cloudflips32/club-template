@@ -3,7 +3,7 @@
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 import About from "@/components/ui/Sections/about";
-import Events from "@/components/ui/Sections/events";
+import ClubEvents from "@/components/ui/Sections/events";
 import FAQ from "@/components/ui/Sections/faq";
 import Join from "@/components/ui/Sections/join";
 import Testimonials from "@/components/ui/Sections/testimonials";
@@ -19,7 +19,7 @@ export default function Component() {
       <main className="relative flex-1 bg-gradient-to-tr from-violet-700 to-blue-800">
         <HeroSection />
         <About />
-        <Events />
+        <ClubEvents />
         <Employment />
         <FAQ />
         <Testimonials />
