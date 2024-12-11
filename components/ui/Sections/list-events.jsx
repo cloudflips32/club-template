@@ -30,36 +30,6 @@ const ListEvents = () => {
           </CardContent>
         </Card>
         ))}
-        <Card>
-          <CardHeader>
-            <CardTitle>AI & Machine Learning Seminar</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Date: July 5, 2024</p>
-            <p>Time: 1:00 PM - 4:00 PM</p>
-            <p>Location: Virtual Event</p>
-          </CardContent>`
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>ML & Backend Convention</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Date: December 5, 2024</p>
-            <p>Time: 1:00 PM - 4:00 PM</p>
-            <p>Location: Virtual Event</p>
-          </CardContent>`
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Hackathon: Code for Good</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Date: August 20-22, 2024</p>
-            <p>Time: 48-hour event</p>
-            <p>Location: Innovation Center</p>
-          </CardContent>
-        </Card>
       </div>
     </>
   )
