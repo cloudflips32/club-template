@@ -32,18 +32,18 @@ const AddEvents = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'events'));
+        setEvents(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      } catch (error) {
+        console.error('Error fetching events:', error);
+        setError('Error fetching events. Please try again later.');
+      }
+    };
     fetchEvents();
   }, []);
 
-  const fetchEvents = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, 'events'));
-      setEvents(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    } catch (error) {
-      console.error('Error fetching events:', error);
-      setError('Error fetching events. Please try again later.');
-    }
-  };
 
   const generateTimeOptions = () => {
     const options = [];

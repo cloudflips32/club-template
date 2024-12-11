@@ -1,7 +1,7 @@
 import React, { useState,useEffect} from 'react'
 import db from '@/app/config/firestore'
 import { collection, getDocs } from 'firebase/firestore'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const ListEvents = () => {
   const [events, setEvents] = useState([])
@@ -21,11 +21,12 @@ const ListEvents = () => {
         <Card key={event.id}>
           <CardHeader>
             <CardTitle>{event.title}</CardTitle>
+            <CardDescription>{event.description}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Date: {new Date(event.date).toLocaleDateString()}</p>
-            <p>Time: {event.time}</p>
-            <p>Description: {event.description}</p>
+            <p><span className='font-semibold'>
+              Date:</span> {new Date(event.date).toLocaleDateString()}</p>
+            <p><span className='font-semibold'>Time:</span> {event.time}</p>
           </CardContent>
         </Card>
         ))}
