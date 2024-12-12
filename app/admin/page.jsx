@@ -83,7 +83,7 @@ export default function AdminDashboard() {
 
   const handleLogin = () => {
     // In a real application, you would validate the credentials against a backend
-    if (loginCredentials.username === 'admin'  && loginCredentials.password === 'password' ) {
+    if (loginCredentials.username === `${process.env.NEXT_ADMIN_USERNAME}`  && loginCredentials.password === `${process.env.NEXT_ADMIN_USERNAME}` ) {
       setIsAuthenticated(true)
       setIsLoginModalOpen(false)
     } else {
