@@ -1,24 +1,25 @@
 import React, { useState,useEffect} from 'react'
 import { db } from '@/app/config/firebaseConfig'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const ListEvents = () => {
   const [events, setEvents] = useState([])
 
-  useEffect(() => {
-    const fetchEvents = async () => {
+  const fetchEvents = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'events'))
-        const eventData = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id }))
-        console.log("Fetched events:", eventData) // Log fetched events
-        setEvents(eventData)
+        const eventsRef = collection(db, 'events');
+        const q = query(eventsRef, orderBy('date', 'asc'));
+        const querySnapshot = await getDocs(q);
+        const newEvents = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setEvents(newEvents);
       } catch (error) {
-        console.error("Error fetching events: ", error)
+        console.error('Error fetching events:', error);
       }
-    }
-    fetchEvents()
-  }, [])
+    };
 
   return (
     <>
