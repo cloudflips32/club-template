@@ -104,13 +104,6 @@ export default function Header() {
 
         <div className="flex flex-col justify-center items-center h-full">
           <Link
-            href="/admin"
-            className="block p-4 text-lg"
-            aria-label="Navigate to Admin Dashboard page"
-          >
-            Admin
-          </Link>
-          <Link
             href="#about"
             className="block p-4 text-lg"
             onClick={(e) => handleSmoothScroll(e, 'about')}
