@@ -107,9 +107,9 @@ export default function AdminDashboard() {
 
   const handleLogout = async () => {
     try {
+      await signOut(auth);
       setIsAuthenticated(false);
       setLoginCredentials({ email: '', password: '' });
-      await signOut(auth);
       // If successful, onAuthStateChanged will update the state
     } catch (error) {
       console.error("Error signing out with Firebase", error);
@@ -226,7 +226,7 @@ export default function AdminDashboard() {
             <Settings className="w-5 h-5 mr-2" />
             Settings
           </Link>
-          <Link href="/" className="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-200">
+          <Link href="/" onClick={handleLogout} className="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-200">
             <LogOut className="w-5 h-5 mr-2" />
             Logout
           </Link>
