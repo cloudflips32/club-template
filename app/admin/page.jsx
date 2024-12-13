@@ -108,6 +108,7 @@ export default function AdminDashboard() {
   const handleLogout = async () => {
     try {
       setIsAuthenticated(false);
+      setLoginCredentials({ email: '', password: '' });
       await signOut(auth);
       // If successful, onAuthStateChanged will update the state
     } catch (error) {
