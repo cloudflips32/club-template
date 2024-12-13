@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { PlusCircle, Edit, Trash2 } from 'lucide-react'
 import { Calendar } from '@/components/ui/calendar'
 import { db } from '@/app/config/firebaseConfig'
-import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore'
+import { collection, addDoc, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore'
 import {
   Dialog,
   DialogContent,
@@ -41,7 +41,9 @@ export default function CalendarAndEvents() {
 
   const fetchEvents = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'events'));
+      const eventsRef = collection(db, 'events');
+      const q = query(eventsRef, orderBy('date', 'asc'));
+      const querySnapshot = await getDocs(q);
       const newEvents = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
