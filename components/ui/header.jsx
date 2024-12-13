@@ -108,7 +108,7 @@ export default function Header() {
             className="block p-4 text-lg"
             aria-label="Navigate to Admin Dashboard page"
           >
-            Admin Dashboard
+            Admin
           </Link>
           <Link
             href="#about"
