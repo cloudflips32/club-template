@@ -1,6 +1,6 @@
 import React, { useState,useEffect} from 'react'
 import { db } from '@/app/config/firebaseConfig'
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const ListEvents = () => {
