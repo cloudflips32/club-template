@@ -10,7 +10,7 @@ const ListEvents = () => {
     const fetchEvents = async () => {
       try {
         const eventsRef = collection(db, 'events');
-        const q = query(eventsRef, orderBy('date', 'asc'));
+        const q = query(eventsRef, orderBy('date', 'asc'),limit(3));
         const querySnapshot = await getDocs(q);
         const newEvents = querySnapshot.docs.map((doc) => ({
           id: doc.id,
