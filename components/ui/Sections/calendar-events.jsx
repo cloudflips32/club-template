@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { PlusCircle, Edit, Trash2 } from 'lucide-react';
+import { PlusCircle, Edit, Trash2 } from 'lucide-react'
 import { Calendar } from '@/components/ui/calendar'
-import db from '@/app/config/firestore'
+import { db } from '@/app/config/firebaseConfig'
 import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore'
 import {
   Dialog,
@@ -156,19 +156,19 @@ export default function CalendarAndEvents() {
           {events.map((event) => (
             <li key={event.id} className="bg-gray-100 p-2 rounded flex justify-between items-start">
               <div>
-                <strong>{new Date(event.date).toDateString()} at {event.time} {event.ampm}: {event.title}</strong>
+                <strong>{new Date(event.date).toDateString()} at {event.time}: {event.title}</strong>
                 <p className="text-sm text-gray-600">{event.description}</p>
               </div>
-              <div>
-                <Button variant="ghost" size="icon" onClick={() => handleEditEvent(event)}>
-                  <Edit className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="icon" onClick={() => handleDeleteEvent(event.id)}>
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </div>
+                <div>
+                  <Button variant="ghost" size="icon" onClick={() => handleEditEvent(event)}>
+                    <Edit className="h-4 w-4" />
+                  </Button>
+                  <Button variant="ghost" size="icon" onClick={() => handleDeleteEvent(event.id)}>
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
             </li>
-          ))}
+          ))};
           {/* MAPPING EVENTS END */}
           {/* MAPPING EVENTS END */}
           {/* MAPPING EVENTS END */}
@@ -180,13 +180,13 @@ export default function CalendarAndEvents() {
           {/* ADDING EVENTS MODAL */}
           {/* ADDING EVENTS MODAL */}
           {/* ADDING EVENTS MODAL */}
-          <Dialog open={isAddEventDialogOpen} onOpenChange={setIsAddEventDialogOpen}>
-            <DialogTrigger asChild>
-              <Button className="mt-4">
-                <PlusCircle className="w-4 h-4 mr-2" />
-                Add Event
-              </Button>
-            </DialogTrigger>
+            <Dialog open={isAddEventDialogOpen} onOpenChange={setIsAddEventDialogOpen}>
+              <DialogTrigger asChild>
+                <Button className="mt-4">
+                  <PlusCircle className="w-4 h-4 mr-2" />
+                  Add Event
+                </Button>
+              </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
                 <DialogTitle>Add New Event</DialogTitle>

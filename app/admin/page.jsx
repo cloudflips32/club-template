@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState,useRef,useCallback,useEffect} from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import { Settings, LogOut } from 'lucide-react'
 import {
   Dialog,
@@ -9,7 +9,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
@@ -17,11 +16,13 @@ import { Button } from '@/components/ui/button'
 import CalendarAndEvents from '@/components/ui/Sections/calendar-events'
 import Members from '@/components/ui/Sections/members'
 import Link from 'next/link'
+import { auth } from '../config/firebaseConfig'
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 
 export default function AdminDashboard() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [loginCredentials, setLoginCredentials] = useState({ username: '', password: '' })
+  const [loginCredentials, setLoginCredentials] = useState({ email: '', password: '' })
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(true)
 
   const menuRef = useRef(null);
@@ -81,20 +82,37 @@ export default function AdminDashboard() {
     }
   }, [menuOpen]);
 
-  const handleLogin = () => {
-    // In a real application, you would validate the credentials against a backend
-    if (loginCredentials.username === `${process.env.NEXT_ADMIN_USERNAME}`  && loginCredentials.password === `${process.env.NEXT_ADMIN_USERNAME}` ) {
-      setIsAuthenticated(true)
-      setIsLoginModalOpen(false)
-    } else {
-      alert('Invalid credentials')
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuthenticated(true);
+        setIsLoginModalOpen(false);
+      } else {
+        setIsAuthenticated(false);
+        setIsLoginModalOpen(true);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogin = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, loginCredentials.email, loginCredentials.password);
+    } catch (error) {
+      console.error("Error signing in with Firebase", error);
+      alert('Invalid credentials');
     }
   }
 
-  const handleLogout = () => {
-    setIsAuthenticated(false)
-    setIsLoginModalOpen(true)
-    setLoginCredentials({ username: '', password: '' })
+  const handleLogout = async () => {
+    try {
+      setIsAuthenticated(false);
+      await signOut(auth);
+      // If successful, onAuthStateChanged will update the state
+    } catch (error) {
+      console.error("Error signing out with Firebase", error);
+    }
   }
 
   if (!isAuthenticated) {
@@ -109,13 +127,14 @@ export default function AdminDashboard() {
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
-                Username
+              <Label htmlFor="email" className="text-right">
+                Email
               </Label>
               <Input
-                id="username"
-                value={loginCredentials.username}
-                onChange={(e) => setLoginCredentials({ ...loginCredentials, username: e.target.value })}
+                id="email"
+                type="email"
+                value={loginCredentials.email}
+                onChange={(e) => setLoginCredentials({ ...loginCredentials, email: e.target.value })}
                 className="col-span-3"
               />
             </div>
@@ -218,7 +237,7 @@ export default function AdminDashboard() {
         <h1 className="text-3xl font-semibold text-center text-gray-800 mr-4 mb-6">Admin Dashboard</h1>
 
         <Members />
-        <CalendarAndEvents />
+        <CalendarAndEvents isAuthenticated={isAuthenticated} />
 
       </main>
     </div>

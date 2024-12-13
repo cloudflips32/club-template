@@ -1,5 +1,5 @@
 import React, { useState,useEffect} from 'react'
-import db from '@/app/config/firestore'
+import { db } from '@/app/config/firebaseConfig'
 import { collection, getDocs } from 'firebase/firestore'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
@@ -8,8 +8,14 @@ const ListEvents = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const querySnapshot = await getDocs(collection(db, 'events'))
-      setEvents(querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id })))
+      try {
+        const querySnapshot = await getDocs(collection(db, 'events'))
+        const eventData = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id }))
+        console.log("Fetched events:", eventData) // Log fetched events
+        setEvents(eventData)
+      } catch (error) {
+        console.error("Error fetching events: ", error)
+      }
     }
     fetchEvents()
   }, [])
