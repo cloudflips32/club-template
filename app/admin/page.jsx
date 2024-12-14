@@ -28,6 +28,12 @@ export default function AdminDashboard() {
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
+  // DROPDOWN MENU LOGIC //
+  // DROPDOWN MENU LOGIC //
+  // DROPDOWN MENU LOGIC //
+  // DROPDOWN MENU LOGIC //
+  // DROPDOWN MENU LOGIC //
+
   // Toggle the menu open/close state
   const toggleMenu = useCallback(() => {
     setMenuOpen((prev) => !prev);
@@ -95,7 +101,11 @@ export default function AdminDashboard() {
 
     return () => unsubscribe();
   }, []);
-
+  // LOGIN, LOGOUT HANDLER //
+  // LOGIN, LOGOUT HANDLER //
+  // LOGIN, LOGOUT HANDLER //
+  // LOGIN, LOGOUT HANDLER //
+  // LOGIN, LOGOUT HANDLER //
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, loginCredentials.email, loginCredentials.password);
@@ -118,6 +128,11 @@ export default function AdminDashboard() {
 
   if (!isAuthenticated) {
     return (
+      /* Admin login modal */
+      /* Admin login modal */
+      /* Admin login modal */
+      /* Admin login modal */
+      /* Admin login modal */
       <Dialog open={isLoginModalOpen} onOpenChange={setIsLoginModalOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -161,6 +176,11 @@ export default function AdminDashboard() {
   }
   return (
     <>
+    {/* HAMBURGER MENU */}
+    {/* HAMBURGER MENU */}
+    {/* HAMBURGER MENU */}
+    {/* HAMBURGER MENU */}
+    {/* HAMBURGER MENU */}
       <div className="flex h-screen bg-gray-100 mr-4">
         <header className="px-4 lg:px-6 h-14 flex items-center my-4">
           {/* Mobile menu toggle button */}
@@ -220,6 +240,10 @@ export default function AdminDashboard() {
           </nav>
         </header>
       {/* Sidebar */}
+      {/* Sidebar */}
+      {/* Sidebar */}
+      {/* Sidebar */}
+      {/* Sidebar */}
       <aside className="w-64 hidden lg:block bg-white shadow-md">
         <nav className="mt-6">
           <Link href="#" className="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-200">
@@ -232,11 +256,18 @@ export default function AdminDashboard() {
           </Link>
         </nav>
       </aside>
-
+      {/* Main Content */}
+      {/* Main Content */}
+      {/* Main Content */}
+      {/* Main Content */}
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-y-auto">
         <h1 className="text-3xl font-semibold text-center text-gray-800 mr-4 mb-6">Admin Dashboard</h1>
-
+      {/* Admin Components */}
+      {/* Admin Components */}
+      {/* Admin Components */}
+      {/* Admin Components */}
+      {/* Admin Components */}
         <Members />
         <CalendarAndEvents isAuthenticated={isAuthenticated} />
 
