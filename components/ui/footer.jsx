@@ -9,13 +9,13 @@ const Footer = () => {
         © 2024 Software Engineering Club. All rights reserved.
       </p>
       <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-      <Link
-            href="/admin"
-            className="text-xs hover:underline underline-offset-4"
-            aria-label="Navigate to Admin Dashboard page"
-          >
-            Admin
-          </Link>
+        <Link
+          href="/admin"
+          className="text-xs hover:underline underline-offset-4"
+          aria-label="Navigate to Admin Dashboard page"
+        >
+          Admin
+        </Link>
         <Link className="text-xs hover:underline underline-offset-4" href="#">
           Terms of Service
         </Link>

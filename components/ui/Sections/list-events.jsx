@@ -26,18 +26,27 @@ const ListEvents = () => {
 
   return (
     <>
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {events.map((event) => (
-        <Card key={event.id}>
-          <CardHeader>
-            <CardTitle>{event.title}</CardTitle>
-            <CardDescription>{event.description}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p><span className='font-semibold'>
-              Date:</span> {new Date(event.date).toLocaleDateString()}</p>
-            <p><span className='font-semibold'>Time:</span> {event.time}</p>
-          </CardContent>
+        <Card key={event.id} className="flex overflow-hidden">
+          <div className="flex-grow">
+            <CardHeader>
+              <CardTitle>{event.title}</CardTitle>
+              <CardDescription>{event.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p><span className='font-semibold'>
+                Date:</span> {new Date(event.date).toLocaleDateString()}</p>
+              <p><span className='font-semibold'>Time:</span> {event.time}</p>
+            </CardContent>
+          </div>
+          <div className="w-2/5 overflow-hidden">
+            <img 
+              src={event.imageUrl} 
+              alt={event.title} 
+              className="w-full h-full object-cover"
+            />
+          </div>
         </Card>
         ))}
       </div>
