@@ -33,11 +33,15 @@ export default function CalendarAndEvents() {
   const [isAddEventDialogOpen, setIsAddEventDialogOpen] = useState(false);
   const [editingEvent, setEditingEvent] = useState(null)
   const [isEditEventDialogOpen, setIsEditEventDialogOpen] = useState(false)
+  const [shouldFetchEvents, setShouldFetchEvents] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchEvents()
-  }, [])
+    if (shouldFetchEvents) {
+      fetchEvents();
+      setShouldFetchEvents(false);
+    }
+  }, [shouldFetchEvents]);
 
   const fetchEvents = async () => {
     try {
@@ -95,7 +99,7 @@ export default function CalendarAndEvents() {
         setError('Error adding event. Please try again later.');
       }
     }
-    fetchEvents();
+    setShouldFetchEvents(true);
   };
 
   {/* EDIT/DELETE EVENTS */}
@@ -117,7 +121,7 @@ export default function CalendarAndEvents() {
         console.error("Error updating event: ", error)
       }
     }
-    fetchEvents()
+    setShouldFetchEvents(true);
   }
 
   const handleEditEvent = (event) => {
@@ -132,7 +136,7 @@ export default function CalendarAndEvents() {
     } catch (error) {
       console.error("Error deleting event: ", error)
     }
-    fetchEvents()
+    setShouldFetchEvents(true);
   }
 
   return (
@@ -252,10 +256,12 @@ export default function CalendarAndEvents() {
                     onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
                     className="col-span-3"
                   />
+                  </div>
                 </div>
-              </div>
               <DialogFooter>
-                <Button type="submit" onClick={handleAddEvent}>Save Event</Button>
+                <div className="flex flex-row">
+                  <Button className="flex w-40 items-center justify-center h-9 rounded-md border border-input mx-auto px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" type="submit" onClick={handleAddEvent}>Save Event</Button>
+                </div>
               </DialogFooter>
             </DialogContent>
             {error && <div className="text-red-500">{error}</div>}
