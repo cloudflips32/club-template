@@ -29,7 +29,7 @@ import { Textarea } from '@/components/ui/textarea';
 export default function CalendarAndEvents() {
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState([]);
-  const [newEvent, setNewEvent] = useState({ title: '', description: '', time: '09:00', ampm: 'AM' });
+  const [newEvent, setNewEvent] = useState({ title: '', description: '', time: '09:00', ampm: 'AM', imageUrl: '' });
   const [isAddEventDialogOpen, setIsAddEventDialogOpen] = useState(false);
   const [editingEvent, setEditingEvent] = useState(null)
   const [isEditEventDialogOpen, setIsEditEventDialogOpen] = useState(false)
@@ -89,9 +89,10 @@ export default function CalendarAndEvents() {
           title: newEvent.title,
           description: newEvent.description,
           time: `${newEvent.time} ${newEvent.ampm}`,
+          imageUrl: newEvent.imageUrl
         };
         await addDoc(collection(db, 'events'), newEventObj);
-        setNewEvent({ date: '', title: '', description: '', time: '09:00', ampm: 'AM' });
+        setNewEvent({ date: '', title: '', description: '', time: '09:00', ampm: 'AM', imageUrl: ''  });
         setIsAddEventDialogOpen(false); // Close the modal
         setError(null); // Clear any previous errors
       } catch (error) {
@@ -111,7 +112,8 @@ export default function CalendarAndEvents() {
     if (editingEvent) {
       const updatedEvent = {
         ...editingEvent,
-        time: `${editingEvent.time} ${editingEvent.ampm}`
+        time: `${editingEvent.time} ${editingEvent.ampm}`,
+        imageUrl: editingEvent.imageUrl
       }
       try {
         await updateDoc(doc(db, 'events', editingEvent.id), updatedEvent)
@@ -161,18 +163,23 @@ export default function CalendarAndEvents() {
           {/* MAPPING EVENTS START */}
           {events.map((event) => (
             <li key={event.id} className="bg-gray-100 p-2 rounded flex justify-between items-start">
-              <div>
-                <strong>{new Date(event.date).toDateString()} at {event.time}: {event.title}</strong>
-                <p className="text-sm text-gray-600">{event.description}</p>
-              </div>
+              <div className="flex items-start">
+                {event.imageUrl && (
+                  <img src={event.imageUrl} alt={event.title} className="w-16 h-16 object-cover rounded mr-2" />
+                )}
                 <div>
-                  <Button variant="ghost" size="icon" onClick={() => handleEditEvent(event)}>
-                    <Edit className="h-4 w-4" />
-                  </Button>
-                  <Button variant="ghost" size="icon" onClick={() => handleDeleteEvent(event.id)}>
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
+                  <strong>{new Date(event.date).toDateString()} at {event.time}: {event.title}</strong>
+                  <p className="text-sm text-gray-600">{event.description}</p>
                 </div>
+              </div>
+              <div>
+                <Button variant="ghost" size="icon" onClick={() => handleEditEvent(event)}>
+                  <Edit className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="icon" onClick={() => handleDeleteEvent(event.id)}>
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </div>
             </li>
           ))};
           {/* MAPPING EVENTS END */}
@@ -257,6 +264,18 @@ export default function CalendarAndEvents() {
                     className="col-span-3"
                   />
                   </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="event-image-url" className="text-right">
+                      Image URL
+                    </Label>
+                    <Input
+                      id="event-image-url"
+                      value={newEvent.imageUrl}
+                      onChange={(e) => setNewEvent({ ...newEvent, imageUrl: e.target.value })}
+                      className="col-span-3"
+                      placeholder="https://example.com/image.jpg"
+                    />
+                  </div>
                 </div>
               <DialogFooter>
                 <div className="flex flex-row">
@@ -337,6 +356,18 @@ export default function CalendarAndEvents() {
                   value={editingEvent.description}
                   onChange={(e) => setEditingEvent({ ...editingEvent, description: e.target.value })}
                   className="col-span-3"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="edit-event-image-url" className="text-right">
+                  Image URL
+                </Label>
+                <Input
+                  id="edit-event-image-url"
+                  value={editingEvent.imageUrl}
+                  onChange={(e) => setEditingEvent({ ...editingEvent, imageUrl: e.target.value })}
+                  className="col-span-3"
+                  placeholder="https://example.com/image.jpg"
                 />
               </div>
             </div>
