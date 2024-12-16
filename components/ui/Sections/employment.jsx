@@ -1,5 +1,6 @@
-import * as React from 'react';
+'use client';
 
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -47,7 +48,7 @@ const employers = [
   { 
     name: "Airbnb", 
     logo: "/logos/airbnb.png", 
-    recruitLink: "" 
+    recruitLink: "https://careers.airbnb.com/" 
   },
   { 
     name: "Salesforce", 
@@ -81,7 +82,22 @@ const getRandomEmployers = (num) => {
 };
 
 const Employment = () => {
-  const randomEmployers = getRandomEmployers(5);
+  const [randomEmployers, setRandomEmployers] = useState([]);
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+    const storedEmployers = localStorage.getItem('randomEmployers');
+    if (storedEmployers) {
+      setRandomEmployers(JSON.parse(storedEmployers));
+    } else {
+      const newRandomEmployers = getRandomEmployers(5);
+      setRandomEmployers(newRandomEmployers);
+      localStorage.setItem('randomEmployers', JSON.stringify(newRandomEmployers));
+    }
+  }, []);
+
+  if (!isClient) return null;
 
   return (
     <section id="employment" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
@@ -90,11 +106,11 @@ const Employment = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {randomEmployers.map((company) => (
             <div key={company.name} className="bg-white content-center items-center space-around p-6 rounded-lg shadow-md">
-              <Link className="flex flex-col items-left justify-center text-gray-600 text-sm text-center" href={company.recruitLink} aria-label="Find Your Career">
-                <Image src={company.logo} alt={`${company.name} Logo`} width={40} height={40} className="mx-auto my-2 mb-4" />
-                <h3 className="text-xl font-medium mb-2 text-center">{company.name}</h3>
-              </Link>
-            </div>
+            <Link className="flex flex-col items-left justify-center text-gray-600 text-sm text-center" href={company.recruitLink} aria-label="Find Your Career">
+              <Image src={company.logo} alt={`${company.name} Logo`} width={40} height={40} className="mx-auto my-2 mb-4" />
+              <h3 className="text-xl font-medium mb-2 text-center">{company.name}</h3>
+            </Link>
+          </div>
           ))}
         </div>
       </div>

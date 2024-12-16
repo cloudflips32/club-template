@@ -49,14 +49,14 @@ function HeroSection() {
                 font-bold tracking-tighter 
                 sm:text-4xl md:text-5xl lg:text-6xl/none
                 border w-fit bg-gradient-to-r blur-xl absolute">
-                FSW's Software Engineering Club
+                FSW Software Engineering Club
               </h1>
               <h1 
                 className="text-3xl text-white 
                 font-bold tracking-tighter 
                 sm:text-4xl md:text-5xl lg:text-6xl/none relative
               ">
-                FSW's Software Engineering Club
+                FSW Software Engineering Club
               </h1>
               <p className="mx-auto max-w-[700px] text-white md:text-xl dark:text-gray-400">
                 Improving the educational experience for programming students here at Florida SouthWestern State College. We review coding fundamentals, engage in workforce interview preparation, and promote the practice of constructive collaboration.
@@ -64,9 +64,7 @@ function HeroSection() {
             </div>
             <div className="space-x-4">
               <Link href="#join">
-                <Button>
-                  Join Now
-                </Button>
+                <Button>Join Now</Button>
               </Link>
               <Link href="#faq">
                 <Button variant="outline">Learn More</Button>
