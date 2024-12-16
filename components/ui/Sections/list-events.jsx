@@ -44,7 +44,7 @@ const ListEvents = () => {
             <img 
               src={event.imageUrl} 
               alt={event.title} 
-              className="w-full h-full object-cover"
+              className="w-full h-40 object-cover"
             />
           </div>
         </Card>

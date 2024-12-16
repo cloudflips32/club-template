@@ -3,7 +3,7 @@ import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const companies = [
+const employers = [
   { 
     name: "Google", 
     logo: "/logos/google.png",
@@ -71,27 +71,27 @@ const companies = [
   },
 ];
 
-const getRandomCompanies = (num) => {
-  if (num > companies.length) {
-    console.warn("Not enough companies in the list to select that many.");
-    return companies.slice();
+const getRandomEmployers = (num) => {
+  if (num > employers.length) {
+    console.warn("Not enough employers in the list to select that many.");
+    return employers.slice();
   }
-  const shuffled = [...companies].sort(() => 0.5 - Math.random());
+  const shuffled = [...employers].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, num);
 };
 
 const Employment = () => {
-  const randomCompanies = getRandomCompanies(5);
+  const randomEmployers = getRandomEmployers(5);
 
   return (
     <section id="employment" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-5xl sm:text-4xl font-bold text-center mb-8">Potential Employers Include:</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {randomCompanies.map((company) => (
+          {randomEmployers.map((company) => (
             <div key={company.name} className="bg-white content-center items-center space-around p-6 rounded-lg shadow-md">
-              <Link className="flex flex-col items-center justify-center text-gray-600 text-sm text-center" href={company.recruitLink} aria-label="Find Your Career">
-                <Image src={company.logo} alt={`${company.name} Logo`} width={40} height={40} className="mx-auto my-2 si mb-4" />
+              <Link className="flex flex-col items-left justify-center text-gray-600 text-sm text-center" href={company.recruitLink} aria-label="Find Your Career">
+                <Image src={company.logo} alt={`${company.name} Logo`} width={40} height={40} className="mx-auto my-2 mb-4" />
                 <h3 className="text-xl font-medium mb-2 text-center">{company.name}</h3>
               </Link>
             </div>
