@@ -5,7 +5,7 @@ import {
   Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, } 
   from '@/components/ui/dialog'
 import AdminAside from '@/components/ui/admin-aside';
-import AdminHamburger from '@/components/ui/admin-header';
+import AdminHeader from '@/components/ui/admin-header';
 import CalendarAndEvents from '@/components/ui/Sections/calendar-events'
 import Members from '@/components/ui/Sections/members'
 import { Label } from '@/components/ui/label'

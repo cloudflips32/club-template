@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { Settings, LogOut } from 'lucide-react';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/app/config/firebaseConfig'
 
 const AdminHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loginCredentials, setLoginCredentials] = useState({ email: '', password: '' })
 
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
