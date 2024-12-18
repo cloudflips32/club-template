@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button"
-import "@/components/heroSection.scss"
+import "@/public/heroSection.scss";
 import Link from 'next/link';
 
 const MatrixEffect = ({particle}) => {
