@@ -5,7 +5,7 @@ import {
   Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, } 
   from '@/components/ui/dialog'
 import AdminAside from '@/components/ui/admin-aside';
-import AdminHamburger from '@/components/ui/admin-hamburger';
+import AdminHamburger from '@/components/ui/admin-header';
 import CalendarAndEvents from '@/components/ui/Sections/calendar-events'
 import Members from '@/components/ui/Sections/members'
 import { Label } from '@/components/ui/label'
@@ -93,14 +93,9 @@ export default function AdminDashboard() {
 
   return (
     <>
-    {/* HAMBURGER MENU */}
       <div className="flex h-screen bg-gray-100 mr-4">
-        <header className="px-4 lg:px-6 h-14 flex items-center my-4">
-          <AdminHamburger />
-        </header>
-      {/* Sidebar */}
+        <AdminHeader />
         <AdminAside signOut={signOut} />
-      {/* Main Content */}
         <main className="flex-1 p-8 overflow-y-auto">
           <h1 className="text-3xl font-semibold text-center text-gray-800 mr-4 mb-6">Admin Dashboard</h1>
       {/* Admin Components */}
