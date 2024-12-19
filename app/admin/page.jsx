@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { auth } from '@/app/config/firebaseConfig'
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import AdminFAQ from '@/components/ui/admin-faq';
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -44,10 +45,6 @@ export default function AdminDashboard() {
 
   if (!isAuthenticated) {
     return (
-      /* Admin login modal */
-      /* Admin login modal */
-      /* Admin login modal */
-      /* Admin login modal */
       /* Admin login modal */
       <Dialog open={isLoginModalOpen} onOpenChange={setIsLoginModalOpen}>
         <DialogContent className="sm:max-w-[425px]">
@@ -90,7 +87,6 @@ export default function AdminDashboard() {
       </Dialog>
     )
   }
-
   return (
     <>
       <div className="flex h-screen bg-gray-100 mr-4">
@@ -101,6 +97,7 @@ export default function AdminDashboard() {
       {/* Admin Components */}
           <Members />
           <CalendarAndEvents isAuthenticated={isAuthenticated} />
+          <AdminFAQ />
         </main>
       </div>
     </>
