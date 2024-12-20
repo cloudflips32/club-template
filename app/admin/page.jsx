@@ -12,8 +12,8 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { auth } from '@/app/config/firebaseConfig'
-import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import AdminFAQ from '@/components/ui/admin-faq';
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
+import AdminFAQ from '@/components/ui/admin-faq'
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -26,6 +26,7 @@ export default function AdminDashboard() {
         setIsAuthenticated(true);
         setIsLoginModalOpen(false);
       } else {
+        setLoginCredentials({ email: '', password: '' })
         setIsAuthenticated(false);
         setIsLoginModalOpen(true);
       }
@@ -87,6 +88,7 @@ export default function AdminDashboard() {
       </Dialog>
     )
   }
+
   return (
     <>
       <div className="flex h-screen bg-gray-100 mr-4">

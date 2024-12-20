@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Settings, LogOut } from 'lucide-react'
 import { signOut } from 'firebase/auth'
@@ -11,8 +11,8 @@ const AdminAside = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      setIsAuthenticated(false);
       setLoginCredentials({ email: '', password: '' });
+      setIsAuthenticated(false);
       // If successful, onAuthStateChanged will update the state
     } catch (error) {
       console.error("Error signing out with Firebase", error);

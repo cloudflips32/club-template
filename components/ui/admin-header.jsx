@@ -68,8 +68,8 @@ const AdminHeader = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      setIsAuthenticated(false);
       setLoginCredentials({ email: '', password: '' });
+      setIsAuthenticated(false);
       // If successful, onAuthStateChanged will update the state
     } catch (error) {
       console.error("Error signing out with Firebase", error);
