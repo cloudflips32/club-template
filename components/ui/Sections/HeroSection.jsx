@@ -56,7 +56,7 @@ function HeroSection() {
                 font-bold tracking-tighter 
                 sm:text-4xl md:text-5xl lg:text-6xl/none relative
               ">
-                FSW Software Engineering Club
+                Software Engineering Club
               </h1>
               <p className="mx-auto max-w-[700px] text-white md:text-xl dark:text-gray-400">
                 Improving the educational experience for programming students here at Florida SouthWestern State College. We review coding fundamentals, engage in workforce interview preparation, and promote the practice of constructive collaboration.
