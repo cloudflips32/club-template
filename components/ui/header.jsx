@@ -67,9 +67,7 @@ export default function Header() {
       {/* Logo Link */}
       <Link className="flex items-center justify-center" href="#" aria-label="Go to homepage">
         <Image src="/images/fsw-buc-logo.png" width={64} height={64} alt="School Logo" />
-        <span className="hidden md:inline-block lg:inline-block text-lg ml-2 font-bold text-black">
-          Software Engineering Club
-        </span>
+        <Image src="/images/fsw-wordmark-logo-white.png" width={128} height={64} alt="school-name" />
       </Link>
 
       {/* Mobile menu toggle button */}
