@@ -67,7 +67,7 @@ export default function Header() {
       {/* Logo Link */}
       <Link className="flex items-center justify-center" href="#" aria-label="Go to homepage">
         <Image src="/images/fsw-buc-logo.png" width={64} height={64} alt="School Logo" />
-        <Image src="/images/fsw-wordmark-logo-white.png" width={128} height={64} alt="school-name" />
+        <Image src="/images/fsw-wordmark-logo-white.png" width={128} height={64} alt="school-name" className='mt-2 ml-2' />
       </Link>
 
       {/* Mobile menu toggle button */}
