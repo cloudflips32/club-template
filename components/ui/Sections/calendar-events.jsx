@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { PlusCircle, Edit, Trash2 } from 'lucide-react'
 import { Calendar } from '@/components/ui/calendar'
 import { db } from '@/app/config/firebaseConfig'
-import { collection, addDoc, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore'
+import { collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, updateDoc } from 'firebase/firestore'
 import {
   Dialog,
   DialogContent,
@@ -141,6 +141,13 @@ export default function CalendarAndEvents() {
     setShouldFetchEvents(true);
   }
 
+  const hasEventOnDate = (date) => {
+    return events.some(event => {
+      const eventDate = new Date(event.date);
+      return eventDate.toDateString() === date.toDateString();
+    });
+  };
+
   return (
     <section className="bg-white p-6 rounded-lg shadow">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">Club Calendar</h2>
@@ -151,6 +158,14 @@ export default function CalendarAndEvents() {
             selected={date}
             onSelect={setDate}
             className="rounded-md border"
+            modifiers={{
+              hasEvent: (date) => hasEventOnDate(date),
+            }}
+            modifiersStyles={{
+              hasEvent: {
+                backgroundColor: 'rgba(128, 0, 128, 0.2)', // Transparent purple
+              },
+            }}
           />
         </div>
         <div className="flex-1">
