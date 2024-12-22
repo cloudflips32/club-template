@@ -6,7 +6,7 @@ import {
   from '@/components/ui/dialog'
 import AdminAside from '@/components/ui/admin-aside';
 import AdminHeader from '@/components/ui/admin-header';
-import CalendarAndEvents from '@/components/ui/Sections/calendar-events'
+import CalendarAndEvents from '@/components/ui/admin-calendar-events'
 import Members from '@/components/ui/Sections/members'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'

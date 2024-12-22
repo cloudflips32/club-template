@@ -1,5 +1,4 @@
-import * as React from 'react'
-import ListEvents from '@/components/ui/Sections/list-events'
+import ListEvents from '@/components/ui/list-events'
 
 const ClubEvents = () => {
   return (

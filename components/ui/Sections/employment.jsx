@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ListEmployers from './list-employers';
+import ListEmployers from '../list-employers';
 
 const Employment = () => {
 
