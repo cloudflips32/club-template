@@ -1,13 +1,11 @@
-"use client";
-
-import Header from "@/components/ui/header";
-import Footer from "@/components/ui/footer";
+import Header from "@/components/ui/Sections/header";
+import Footer from "@/components/ui/Sections/footer";
 import About from "@/components/ui/Sections/about";
 import ClubEvents from "@/components/ui/Sections/events";
 import FAQ from "@/components/ui/Sections/faq";
 import Join from "@/components/ui/Sections/join";
 import Testimonials from "@/components/ui/Sections/testimonials";
-import HeroSection from "@/components/ui/Sections/HeroSection";
+import HeroSection from "@/components/ui/Sections/hero";
 import Employment from "@/components/ui/Sections/employment";
 
 // import MemberCard from "../components/ui/MemberCard";

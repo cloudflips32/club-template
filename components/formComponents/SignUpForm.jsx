@@ -1,5 +1,6 @@
-import * as React from "react";
-import { useState } from "react";
+'use client';
+
+import React, {useState} from "react";
 import { NameField } from "./Fields/nameField";
 import { EmailField } from "./Fields/emailField";
 import { SubmitButton } from "./submitButton";
