@@ -17,13 +17,13 @@ function HeroSection() {
                 className="text-3xl text-white 
                 font-bold tracking-tighter 
                 sm:text-4xl md:text-5xl lg:text-6xl/none
-                border w-fit bg-gradient-to-r blur-xl absolute">
+                border w-fit bg-gradient-to-r blur-xl absolute lg:mb-24 mb-16">
                 Software Engineering Club
               </h1>
               <h1 
                 className="text-3xl text-white 
                 font-bold tracking-tighter 
-                sm:text-4xl md:text-5xl lg:text-6xl/none relative
+                sm:text-4xl md:text-5xl lg:text-6xl/none relative lg:mb-24 mb-16
               ">
                 Software Engineering Club
               </h1>
