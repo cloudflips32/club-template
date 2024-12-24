@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 import React, { useState, useEffect } from 'react'
-import { PlusCircle, Edit, Trash2 } from 'lucide-react'
-import { Calendar } from '@/components/ui/calendar'
 import { db } from '@/app/config/firebaseConfig'
 import { collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, updateDoc } from 'firebase/firestore'
+import { PlusCircle, Edit, Trash2 } from 'lucide-react'
+import { Calendar } from '@/components/ui/calendar'
 import {
   Dialog,
   DialogContent,
