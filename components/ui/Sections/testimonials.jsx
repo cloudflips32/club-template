@@ -1,5 +1,6 @@
-import * as React from 'react'
+'use client';
 
+import React, { useState, useEffect } from 'react';
 import {
     Card,
     CardContent,
@@ -8,7 +9,27 @@ import {
     CardTitle,
   } from "@/components/ui/card";
 
+import { db } from '@/app/config/firebaseConfig'
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      const testimonialRef = collection(db, 'testimonials');
+      const q = query(testimonialRef, orderBy('name', 'asc'))
+      const querySnapshot = await getDocs(q);
+      const newTestimonials = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setTestimonials(newTestimonials);
+    };
+
+    fetchTestimonials();
+  }, []);
+
   return (
     <>
       <section
@@ -20,41 +41,17 @@ const Testimonials = () => {
             Hear What Members Have To Say
           </h2>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  Melissa E
-                </CardTitle>
-                <CardDescription>
-                  Vice President
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>"There's no better feeling than being part of a community that supports and encourages you to grow."</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Zachariah D</CardTitle>
-                <CardDescription>
-                Member
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>"Has been a great experience! The club has helped me grow as a developer and connect with like-minded individuals."</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Christopher G</CardTitle>
-                <CardDescription>
-                Secretary
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>"I have learned so much from the club and have made some amazing friends along the way."</p>
-              </CardContent>
-            </Card>
+            {testimonials.map((testimonial) => (
+              <Card key={testimonial.id}>
+                <CardHeader>
+                  <CardTitle>{testimonial.name}</CardTitle>
+                  <CardDescription>{testimonial.role}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p>{testimonial.content}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
