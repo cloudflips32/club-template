@@ -21,7 +21,7 @@ const SubmitButton = React.forwardRef(({ className, placeholder, canSubmit, scro
           ref={ref}
           id={"SignUp"}
           disabled={false}
-          scroll={false}
+          scroll={"false"}
           onClick={() => {
             toast({
               title: "Input Submitted!",

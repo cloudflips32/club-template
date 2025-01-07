@@ -5,6 +5,8 @@ import { NameField } from "./Fields/nameField";
 import { EmailField } from "./Fields/emailField";
 import { SubmitButton } from "./submitButton";
 import { ResetButton } from "./resetButton";
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '@/app/config/firebaseConfig';
 
 const SignUpForm = React.forwardRef((placeHolder, ref) => {
   const [ValidName, setValidName] = useState(false);
@@ -31,9 +33,29 @@ const SignUpForm = React.forwardRef((placeHolder, ref) => {
     setValidEmail(false);
   }
 
+  async function handleSubmit(e, name, email) {
+    try {
+      e.preventDefault();
+      const docRef = doc(db, 'members', email);
+      const currentTime = new Date().toISOString();
+      const role = 'member';
+
+      await setDoc(docRef, { name, email, role, joined: currentTime });
+      // Reset form fields
+      ResetState()
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Error submitting form. Please try again.');
+    }
+  }
+
   return (
     <div className="w-full max-w-sm space-y-2">
-      <form className="flex flex-col space-y-4">
+      <form className="flex flex-col space-y-4" onSubmit={(e) => {
+        if (compareBoth()) {
+          handleSubmit(e.target.name.value, e.target.email.value);
+        }
+      }}>
         <NameField
           changeParentState={changeNameState}
           placeholder="Your Name"
