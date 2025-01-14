@@ -1,7 +1,6 @@
-"use client";
+"use client"
 
-import Image from 'next/image';
-import { useToast } from "@/components/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast"
 import {
   Toast,
   ToastClose,
@@ -19,7 +18,6 @@ export function Toaster() {
       {toasts.map(function ({ id, title, description, action, ...props }) {
         return (
           (<Toast key={id} {...props}>
-            <Image src="/images/fsw-buc-logo.png" width={64} height={64} alt="School Logo" />
             <div className="grid gap-1">
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (

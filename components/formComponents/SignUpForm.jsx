@@ -8,12 +8,18 @@ import { ResetButton } from "./resetButton";
 import { db } from "@/app/config/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 
+import { useToast } from "@/hooks/use-toast"
+import { ToastAction } from "@radix-ui/react-toast";
+import { Image } from "lucide-react";
+
 const SignUpForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [nameValid, setNameValid] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
+
+  const { toast } = useToast();
 
   const changeParentState = (isValid, type) => {
     if (type === 'name') {
@@ -38,12 +44,11 @@ const SignUpForm = () => {
   }, [nameValid, emailValid]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (canSubmit) {
+    if (e && e.preventDefault) {
       e.preventDefault();
+    }
+    if (canSubmit) {
       try {
-
         const docRef = await addDoc(collection(db, "members"), {
           name: name,
           email: email,
@@ -51,8 +56,12 @@ const SignUpForm = () => {
           joined: new Date().toISOString(),
         });
 
-        console.log("Document written with ID: ", docRef.id);
-
+        toast({
+          title: "Sent!", 
+          image: <Image src={"@/public/images/fsw-buc-logo.png"} height={40} width={40} />,
+          description: "Welcome to the Software Engineering club.",
+          action: <ToastAction altText="undo">Undo</ToastAction>,
+        });
         setName("");
         setEmail("");
         setNameValid(false);
@@ -61,7 +70,6 @@ const SignUpForm = () => {
 
       } catch (error) {
         console.error("Error adding document: ", error);
-        alert("An error occurred. Please try again.");
       }
     }
   };
@@ -87,7 +95,7 @@ const SignUpForm = () => {
           <SubmitButton
             canSubmit={canSubmit}
             handleSubmit={handleSubmit}
-          >
+            >
             Submit
           </SubmitButton>
           <ResetButton
