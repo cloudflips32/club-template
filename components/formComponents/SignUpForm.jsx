@@ -1,79 +1,98 @@
 'use client';
 
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { NameField } from "./Fields/nameField";
 import { EmailField } from "./Fields/emailField";
 import { SubmitButton } from "./submitButton";
 import { ResetButton } from "./resetButton";
-import { doc, setDoc } from 'firebase/firestore';
-import { db } from '@/app/config/firebaseConfig';
+import { db } from "@/app/config/firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
-const SignUpForm = React.forwardRef((placeHolder, ref) => {
-  const [ValidName, setValidName] = useState(false);
-  const [ValidEmail, setValidEmail] = useState(false);
-  const [GetSubmitStatus, setSubmitStatus] = useState(false);
-  
-  function changeNameState(TrueOrFalse) {
-    TrueOrFalse === true ? setValidName(true) : setValidName(false);
-  }
+const SignUpForm = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [nameValid, setNameValid] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
 
-  function changeEmailState(TrueOrFalse) {
-    TrueOrFalse === true ? setValidEmail(true) : setValidEmail(false);
-  }
-
-  function compareBoth() {
-    let result = false;
-    ValidEmail === true && ValidName === true ? result = true : result = false;
-    return result;
-  }
-
-  // For the reset button!
-  function ResetState() {
-    setValidName(false);
-    setValidEmail(false);
-  }
-
-  async function handleSubmit(e, name, email) {
-    try {
-      e.preventDefault();
-      const docRef = doc(db, 'members', email);
-      const currentTime = new Date().toISOString();
-      const role = 'member';
-
-      await setDoc(docRef, { name, email, role, joined: currentTime });
-      // Reset form fields
-      ResetState()
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Error submitting form. Please try again.');
+  const changeParentState = (isValid, type) => {
+    if (type === 'name') {
+      setNameValid(isValid);
+    } else if (type === 'email') {
+      setEmailValid(isValid);
     }
-  }
+
+    if (nameValid && emailValid) {
+      setCanSubmit(true);
+    } else {
+      setCanSubmit(false);
+    }
+  };
+
+  useEffect(() => {
+    if (nameValid && emailValid) {
+      setCanSubmit(true);
+    } else {
+      setCanSubmit(false);
+    }
+  }, [nameValid, emailValid]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (canSubmit) {
+      e.preventDefault();
+      try {
+
+        const docRef = await addDoc(collection(db, "members"), {
+          name: name,
+          email: email,
+          role: "Member",
+          joined: new Date(),
+        });
+
+        console.log("Document written with ID: ", docRef.id);
+
+        setName("");
+        setEmail("");
+        setNameValid(false);
+        setEmailValid(false);
+        setCanSubmit(false);
+
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        alert("An error occurred. Please try again.");
+      }
+    }
+  };
 
   return (
     <div className="w-full max-w-sm space-y-2">
-      <form className="flex flex-col space-y-4" onSubmit={(e) => {
-        if (compareBoth()) {
-          handleSubmit(e.target.name.value, e.target.email.value);
-        }
-      }}>
+      <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
         <NameField
-          changeParentState={changeNameState}
+          name={name}
+          setName={setName}
+          changeParentState={(isValid) => changeParentState(isValid, 'name')}
           placeholder="Your Name"
           required
-        ></NameField>
+        />
         <EmailField
-          changeParentState={changeEmailState}
+          email={email}
+          setEmail={setEmail}
+          changeParentState={(isValid) => changeParentState(isValid, 'email')}
           placeholder="Your Email"
           required
-        ></EmailField>
+        />
         <div className="flex flex-row space-x-4 mx-auto">
-          <SubmitButton 
-            canSubmit={compareBoth}
+          <SubmitButton
+            canSubmit={canSubmit}
+            handleSubmit={handleSubmit}
           >
             Submit
           </SubmitButton>
           <ResetButton
-            onClick={ResetState}
+            setName={setName}
+            setEmail={setEmail}
           >
             Reset
           </ResetButton>
@@ -81,6 +100,6 @@ const SignUpForm = React.forwardRef((placeHolder, ref) => {
       </form>
     </div>
   );
-});
+};
 
-export { SignUpForm };
+export default SignUpForm;
