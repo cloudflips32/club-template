@@ -57,8 +57,7 @@ const SignUpForm = () => {
         });
 
         toast({
-          title: "Sent!", 
-          image: <Image src={"@/public/images/fsw-buc-logo.png"} height={40} width={40} />,
+          title: "Sent!",
           description: "Welcome to the Software Engineering club.",
           action: <ToastAction altText="undo">Undo</ToastAction>,
         });

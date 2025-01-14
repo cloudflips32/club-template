@@ -9,6 +9,7 @@ import {
   ToastTitle,
   ToastViewport,
 } from "@/components/ui/toast"
+import Image from 'next/image'
 
 export function Toaster() {
   const { toasts } = useToast()
@@ -18,6 +19,7 @@ export function Toaster() {
       {toasts.map(function ({ id, title, description, action, ...props }) {
         return (
           (<Toast key={id} {...props}>
+            <Image src="/images/fsw-buc-logo.png" width={64} height={64} alt="School Logo" />
             <div className="grid gap-1">
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (
