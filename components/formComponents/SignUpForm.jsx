@@ -48,7 +48,7 @@ const SignUpForm = () => {
           name: name,
           email: email,
           role: "Member",
-          joined: new Date(),
+          joined: new Date().toISOString(),
         });
 
         console.log("Document written with ID: ", docRef.id);

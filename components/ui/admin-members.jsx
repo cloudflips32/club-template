@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {
   Table,
   TableBody,
@@ -21,42 +21,49 @@ import { Button } from '@/components/ui/button'
 import { Edit, Trash2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { db } from '@/app/config/firebaseConfig'
+import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 // Mock data for club members
-const initialClubMembers = [
-  { id: 1, name: 'Alice Johnson', email: 'alice@example.com', role: 'President', joinedAt: '2023-01-15' },
-  { id: 2, name: 'Bob Smith', email: 'bob@example.com', role: 'Vice President', joinedAt: '2023-02-01' },
-  { id: 3, name: 'Charlie Brown', email: 'charlie@example.com', role: 'Secretary', joinedAt: '2023-02-15' },
-  { id: 4, name: 'Diana Ross', email: 'diana@example.com', role: 'Treasurer', joinedAt: '2023-03-01' },
-  { id: 5, name: 'Ethan Hunt', email: 'ethan@example.com', role: 'Member', joinedAt: '2023-03-15' },
-]
 
 const Members = () => {
-  const [clubMembers, setClubMembers] = useState(initialClubMembers)
+  const [clubMembers, setClubMembers] = useState([])
   const [editingMember, setEditingMember] = useState(null)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
 
-  const handleDeleteMember = (id) => {
-    setClubMembers(clubMembers.filter(member => member.id !== id))
-  }
+  useEffect(() => {
+    const fetchMembers = async () => {
+      const membersRef = collection(db, 'members');
+      const querySnapshot = await getDocs(membersRef);
+      const members = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setClubMembers(members);
+    };
+    fetchMembers();
+  }, []);
+
+  const handleDeleteMember = async (id) => {
+    const memberRef = doc(db, 'members', id);
+    await deleteDoc(memberRef);
+    setClubMembers(clubMembers.filter((member) => member.id !== id));
+  };
 
   const handleEditMember = (id) => {
-    const memberToEdit = clubMembers.find(member => member.id === id)
+    const memberToEdit = clubMembers.find((member) => member.id === id);
     if (memberToEdit) {
-      setEditingMember(memberToEdit)
-      setIsEditDialogOpen(true)
+      setEditingMember(memberToEdit);
+      setIsEditDialogOpen(true);
     }
-  }
+  };
 
-  const handleSaveEdit = () => {
+  const handleSaveEdit = async () => {
     if (editingMember) {
-      setClubMembers(clubMembers.map(member => 
-        member.id === editingMember.id ? editingMember : member
-      ))
-      setIsEditDialogOpen(false)
-      setEditingMember(null)
+      const memberRef = doc(db, 'members', editingMember.id);
+      await updateDoc(memberRef, editingMember);
+      setClubMembers(clubMembers.map((member) => (member.id === editingMember.id ? editingMember : member)));
+      setIsEditDialogOpen(false);
+      setEditingMember(null);
     }
-  }
+  };
 
   return (
     <>
@@ -73,12 +80,12 @@ const Members = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {clubMembers.map((member) => (
+          {clubMembers.map((member) => (
               <TableRow key={member.id}>
                 <TableCell>{member.name}</TableCell>
                 <TableCell>{member.email}</TableCell>
                 <TableCell>{member.role}</TableCell>
-                <TableCell>{new Date(member.joinedAt).toLocaleDateString()}</TableCell>
+                <TableCell>{member.joined}</TableCell>
                 <TableCell className="text-right">
                   <Button variant="ghost" size="icon" onClick={() => handleEditMember(member.id)}>
                     <Edit className="h-4 w-4" />

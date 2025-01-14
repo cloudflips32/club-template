@@ -6,7 +6,7 @@ import { auth } from '@/app/config/firebaseConfig'
 import AdminAside from '@/components/ui/admin-aside'
 import AdminHeader from '@/components/ui/admin-header'
 import CalendarAndEvents from '@/components/ui/admin-calendar-events'
-import Members from '@/components/ui/Sections/members'
+import Members from '@/components/ui/admin-members'
 import AdminFAQ from '@/components/ui/admin-faq'
 import AdminAuth from '@/components/ui/admin-auth'
 
