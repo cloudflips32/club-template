@@ -45,6 +45,7 @@ const EmailField = React.forwardRef(({ email, setEmail, className, placeholder, 
         value={email}
         ref={emailRef}
         placeholder={placeholder}
+        maxLength="21"
         onChange={handleChange}
         onInput={handleInput} // Add this event listener
         className={cn(
