@@ -6,52 +6,84 @@
 
 ---
 
-Getting Started:
+# Documentation
 
-In your IDE, after opening a folder-
+## Overview
 
-<code>git clone https://github.com/cloudflips32/se-club.git
-npm i -g npm@latest</code>
+**SE Club** is a community space for students and enthusiasts to collaborate on Software Engineering topics. This repository contains the Software Engineering club website. It was created with the intention of helping individuals collaborate and grow to better meet the requirements to find a software engineering role.
 
----
+## Features
 
-10/09/2024 Initial Commit- Boilerplate for SE Club website.
+- **Community**: Encourages open-source contributions and collaboration among students and software engineers.
+- **Internship Opportunies**: A collection of resources useful for students seeking internship roles.
+- **Club Events**: Meeting times and subjects of interest listed.
 
-![page-preview-first-commit](/public/images/se-club-preview-1.png)
+## Installation
 
----
+To get started with the SE Club repository, follow these steps to install and set up the necessary tools on your local machine.
 
-10/26/2024 Form Section-
-[@jackalotisme](https://github.com/jackalotisme) Name and Email Validation Added
+### Prerequisites
 
-![first-club-PR-merge](/public/images/se-club-contribution-one.png)
+Make sure you have the following installed on your system:
 
----
+- **Git**: [Download Git](https://git-scm.com/)
+- A suitable programming language runtime (e.g., Python, Java, Node.js depending on the tools included in the repository)
 
-11/10/2024 Header Section- [@Zduroseau](https://github.com/Zduroseau) Hamburger Menu Added
+### Clone the repository
 
-![second-club-PR-merge](/public/images/se-club-contribution-two.png)
+```bash
+git clone https://github.com/cloudflips32/se-club.git
+cd se-club
+```
 
----
+### Install Dependencies
+Within terminal:
 
-12/02/2024 Hero Section- [@luna-enamorada](https://github.com/luna-enamorada) Sass Utilization and Animation
+```bash
+npm install
+npm init
+npx npx create-next-app@latest
+npx shadcn@latest init
+npx shadcn@latest add accordion dialog icons label toast
+npm install -D tailwindcss postcss autoprefixer sass
+npx tailwindcss init
+npm install firebase @firebase/irestore git @next/env bcrypt dotenv uuid
+git init
+```
 
-![fourth-club-PR-merge](/public/images/se-club-contribution-four.png)
+Running the Project
+Follow the specific instructions provided in the individual project directories (e.g., README.md) for running different tools or applications that are part of the SE Club.
 
----
+```bash
+npm run dev
+```
 
-12/05/2024 Submit Button, Reset Button, Error Window- [@jackalotisme](https://github.com/jackalotisme) Conditional Submit
+# Collaboration:
 
-![third-club-PR-merge](/public/images/se-club-contribution-three.png)
+Engage with the community by participating in discussions, opening issues, and reviewing pull requests.
 
----
+# Contributing:
 
-12/09/2024 Admin Dashboard- [@cloudflips32](https://github.com/cloudflips32) Admin Boilerplate
+We welcome contributions from everyone. Whether you're fixing a bug, adding a new feature, or updating documentation, your help is appreciated.
 
-![fifth-club-PR-merge](/public/images/se-club-contribution-five.png)
+## To contribute, please:
 
----
+  * Fork this repository.
+  * Create a new branch for your changes.
+  * Make your changes, and be sure to test them thoroughly.
+  * Commit your changes with clear messages describing what you did.
+  * Push your changes to your forked repository.
+  * Open a pull request to the main branch of this repository.
 
-Current version of app is now viewable from repo!
+## License
 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+If you encounter any issues or need help, feel free to open an issue in the repository or reach out to the community via the discussions page.
+
+## Acknowledgments
+
+Thanks to the Software Engineering club for continuous collaboration and support.
 [Click Here!](https://se-club.vercel.app)
