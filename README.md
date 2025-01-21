@@ -6,11 +6,11 @@
 
 ---
 
-# SE Club - Documentation
+# Documentation
 
 ## Overview
 
-**SE Club** is a project designed to provide resources and a community space for students and enthusiasts to collaborate on Software Engineering (SE) topics. This repository contains the Software Engineering club website. It was created with the intention of helping individuals collaborate and grow to better meet the requirements to find a software engineering role.
+**SE Club** is a community space for students and enthusiasts to collaborate on Software Engineering topics. This repository contains the Software Engineering club website. It was created with the intention of helping individuals collaborate and grow to better meet the requirements to find a software engineering role.
 
 ## Features
 
