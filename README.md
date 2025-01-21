@@ -15,7 +15,7 @@
 ## Features
 
 - **Community**: Encourages open-source contributions and collaboration among students and software engineers.
-- **Internship Opportunies**: A collection of utilities useful for software engineers.
+- **Internship Opportunies**: A collection of resources useful for students seeking internship roles.
 - **Club Events**: Meeting times and subjects of interest listed.
 
 ## Installation
