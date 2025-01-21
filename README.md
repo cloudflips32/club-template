@@ -37,16 +37,24 @@ cd se-club
 ```
 
 ### Install Dependencies
+Within terminal:
 
 ```bash
 npm install
+npm init
+npx npx create-next-app@latest
+npx shadcn@latest init
+npx shadcn@latest add accordion dialog icons label toast
+npm install -D tailwindcss postcss autoprefixer sass
+npx tailwindcss init
+npm install firebase @firebase/irestore @next/env bcrypt dotenv uuid
 ```
 
 Running the Project
 Follow the specific instructions provided in the individual project directories (e.g., README.md) for running different tools or applications that are part of the SE Club.
 
 ```bash
-npm start
+npm run dev
 ```
 
 # Collaboration:
