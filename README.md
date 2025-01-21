@@ -61,7 +61,8 @@ npm run dev
 # Collaboration:
 
 Engage with the community by participating in discussions, opening issues, and reviewing pull requests.
-Contributing
+
+# Contributing:
 
 We welcome contributions from everyone. Whether you're fixing a bug, adding a new feature, or updating documentation, your help is appreciated.
 
