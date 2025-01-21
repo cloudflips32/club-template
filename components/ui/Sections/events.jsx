@@ -1,3 +1,5 @@
+'use client';
+
 import ListEvents from '@/components/ui/list-events'
 
 const ClubEvents = () => {

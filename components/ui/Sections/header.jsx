@@ -21,22 +21,6 @@ export default function Header() {
     }
   };
 
-  // Smooth scroll handler (Reusable function)
-  const handleSmoothScroll = (e, targetId) => {
-    e.preventDefault(); // Prevent default anchor link behavior
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-
-    // Close the menu after clicking the link
-    setMenuOpen(false);
-  };
-
   // Close the menu if clicked outside
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -106,7 +90,6 @@ export default function Header() {
           <Link
             href="#about"
             className="block p-4 text-lg"
-            onClick={(e) => handleSmoothScroll(e, 'about')}
             aria-label="Navigate to About section"
           >
             About
@@ -114,7 +97,6 @@ export default function Header() {
           <Link
             href="#events"
             className="block p-4 text-lg"
-            onClick={(e) => handleSmoothScroll(e, 'events')}
             aria-label="Navigate to Events section"
           >
             Events
@@ -122,7 +104,6 @@ export default function Header() {
           <Link
             href="#testimonials"
             className="block p-4 text-lg"
-            onClick={(e) => handleSmoothScroll(e, 'testimonials')}
             aria-label="Navigate to Testimonials section"
           >
             Testimonials
@@ -130,7 +111,6 @@ export default function Header() {
           <Link
             href="#join"
             className="block p-4 text-lg"
-            onClick={(e) => handleSmoothScroll(e, 'join')}
             aria-label="Navigate to Join Us section"
           >
             Join Us
