@@ -10,7 +10,7 @@
 
 ## Overview
 
-**SE Club** is a community space for students and enthusiasts to collaborate on Software Engineering topics. This repository contains the Software Engineering club website. It was created with the intention of helping individuals collaborate and grow to better meet the requirements to find a software engineering role.
+**SWE Club** is a community space for students and enthusiasts to collaborate on Software Engineering topics. This repository contains the Software Engineering club website. It was created with the intention of helping individuals collaborate and grow to better meet the requirements to find a software engineering role.
 
 ## Features
 
@@ -86,4 +86,4 @@ If you encounter any issues or need help, feel free to open an issue in the repo
 ## Acknowledgments
 
 Thanks to the Software Engineering club for continuous collaboration and support.
-[Click Here!](https://se-club.vercel.app)
+[Click Here!](https://swe-club.vercel.app)
