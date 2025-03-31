@@ -32,7 +32,7 @@ Make sure you have the following installed on your system:
 ### Clone the repository
 
 ```bash
-git clone https://github.com/cloudflips32/se-club.git
+git clone https://github.com/cloudflips32/swe-club.git
 cd se-club
 ```
 
