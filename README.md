@@ -86,4 +86,4 @@ If you encounter any issues or need help, feel free to open an issue in the repo
 ## Acknowledgments
 
 Thanks to the Software Engineering club for continuous collaboration and support.
-[Click Here!](https://swe-club.vercel.app)
+[Click Here!](https://se-club.vercel.app)
