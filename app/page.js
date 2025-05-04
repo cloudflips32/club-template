@@ -8,11 +8,10 @@ import Testimonials from "@/components/ui/Sections/testimonials";
 import HeroSection from "@/components/ui/Sections/hero";
 import Employment from "@/components/ui/Sections/employment";
 
-// import MemberCard from "../components/ui/MemberCard";
 
 export default function Component() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen from-slate-50 to-slate-100 bg-gradient-to-tr">
       <Header />
       <main className="relative flex-1 bg-gradient-to-tr from-violet-700 to-blue-800">
         <HeroSection />

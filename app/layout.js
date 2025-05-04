@@ -15,7 +15,12 @@ const geistMono = localFont({
 
 export const metadata = {
   title: "Software Engineering Club, Lee Campus",
-  description: "Created by the Software Engineering Club at Lee Campus"
+  description: "Created by the Software Engineering Club at Lee Campus",
+  icons: {
+    icon: "/icon.ico",
+    shortcut: "/icon.ico",
+    apple: "/icon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
