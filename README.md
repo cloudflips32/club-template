@@ -47,7 +47,7 @@ npx shadcn@latest init
 npx shadcn@latest add accordion dialog icons label toast
 npm install -D tailwindcss postcss autoprefixer sass
 npx tailwindcss init
-npm install firebase @firebase/irestore git @next/env bcrypt dotenv uuid
+npm install firebase @firebase/firestore git @next/env bcrypt dotenv uuid
 git init
 ```
 
