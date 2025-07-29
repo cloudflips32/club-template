@@ -31,6 +31,7 @@
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",
     "react-router-dom": "^6.27.0",
+    "react-share": "^5.2.2",
     "sass-embedded": "^1.82.0",
     "tailwind-merge": "^2.5.3",
     "tailwindcss-animate": "^1.0.7",

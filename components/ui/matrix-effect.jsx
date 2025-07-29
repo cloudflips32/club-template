@@ -2,18 +2,18 @@
 
 import React, { useState, useEffect } from 'react'
 
-const MatrixEffect = ({particle}) => {
+const MatrixEffect = ({ particle }) => {
   // Toggle between "0" and "1" and update CSS accordingly
   // This will ensure each particle will have a unique pattern
 
-  const particles = Array.from({ length: particle }, () => ( Math.random() > 0.5 ? "0" : "1") );
-  
+  const particles = Array.from({ length: particle }, () => (Math.random() > 0.5 ? "0" : "1"));
+
   const [matrixs, setMatrixs] = useState(particles);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setMatrixs((prevMatrixs) =>
-        prevMatrixs.map((char) => (char === "0" ? "1" : "0")) 
+        prevMatrixs.map((char) => (char === "0" ? "1" : "0"))
       )
     }, 250)
 
@@ -23,10 +23,11 @@ const MatrixEffect = ({particle}) => {
   return (
     <div className="matrixs">
       {matrixs.map((char, index) => (
-        <div 
-          key={index} 
-          className="matrix" 
-          character={char}>
+        <div
+          key={index}
+          className="matrix"
+          character={char}
+        >
         </div>
       ))}
     </div>

@@ -31,6 +31,7 @@ export default function RootLayout({ children }) {
       >
         {children}
         <Toaster />
+        <script src="https://static.addtoany.com/menu/page.js"></script>
       </body>
     </html>
   );

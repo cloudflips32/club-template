@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Table,
   TableBody,
@@ -80,7 +80,7 @@ const Members = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-          {clubMembers.map((member) => (
+            {clubMembers.map((member) => (
               <TableRow key={member.id}>
                 <TableCell>{member.name}</TableCell>
                 <TableCell>{member.email}</TableCell>

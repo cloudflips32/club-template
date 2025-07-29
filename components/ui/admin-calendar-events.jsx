@@ -60,8 +60,8 @@ export default function CalendarAndEvents() {
 
   const generateTimeOptions = () => {
     const options = [];
-    for (let hour = 0; hour < 24; hour++) {
-      for (let minute = 0; minute < 60; minute += 30) {
+    for (let hour = 0; hour < 12; hour++) {
+      for (let minute = 0; minute < 60; minute += 15) {
         const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
         options.push(time);
       }
@@ -92,7 +92,7 @@ export default function CalendarAndEvents() {
           imageUrl: newEvent.imageUrl
         };
         await addDoc(collection(db, 'events'), newEventObj);
-        setNewEvent({ date: '', title: '', description: '', time: '09:00', ampm: 'AM', imageUrl: ''  });
+        setNewEvent({ date: '', title: '', description: '', time: '09:00', ampm: 'AM', imageUrl: '' });
         setIsAddEventDialogOpen(false); // Close the modal
         setError(null); // Clear any previous errors
       } catch (error) {
@@ -103,10 +103,10 @@ export default function CalendarAndEvents() {
     setShouldFetchEvents(true);
   };
 
-  {/* EDIT/DELETE EVENTS */}
-  {/* EDIT/DELETE EVENTS */}
-  {/* EDIT/DELETE EVENTS */}
-  {/* EDIT/DELETE EVENTS */}
+  {/* EDIT/DELETE EVENTS */ }
+  {/* EDIT/DELETE EVENTS */ }
+  {/* EDIT/DELETE EVENTS */ }
+  {/* EDIT/DELETE EVENTS */ }
 
   const handleSaveEventEdit = async () => {
     if (editingEvent) {
@@ -128,7 +128,7 @@ export default function CalendarAndEvents() {
 
   const handleEditEvent = (event) => {
     const [time, ampm] = event.time.split(' ')
-    setEditingEvent({...event, time, ampm})
+    setEditingEvent({ ...event, time, ampm })
     setIsEditEventDialogOpen(true)
   }
 
@@ -171,50 +171,52 @@ export default function CalendarAndEvents() {
         <div className="flex-1">
           <h3 className="text-lg font-medium mb-2">Events</h3>
           <ul className="space-y-2">
-          {/* MAPPING EVENTS START */}
-          {/* MAPPING EVENTS START */}
-          {/* MAPPING EVENTS START */}
-          {/* MAPPING EVENTS START */}
-          {/* MAPPING EVENTS START */}
-          {events.map((event) => (
-            <li key={event.id} className="bg-gray-100 p-2 rounded flex justify-between items-start">
-              <div className="flex items-start">
-                {event.imageUrl && (
-                  <img src={event.imageUrl} alt={event.title} className="w-16 h-16 object-cover rounded mr-2" />
-                )}
-                <div>
-                  <strong>{new Date(event.date).toDateString()} at {event.time}: {event.title}</strong>
-                  <p className="text-sm text-gray-600">{event.description}</p>
+
+            {/* MAPPING EVENTS START */}
+            {/* MAPPING EVENTS START */}
+            {/* MAPPING EVENTS START */}
+            {/* MAPPING EVENTS START */}
+            {/* MAPPING EVENTS START */}
+
+            {events.map((event) => (
+              <li key={event.id} className="bg-gray-100 p-2 rounded flex justify-between items-start">
+                <div className="flex items-start">
+                  {event.imageUrl && (
+                    <img src={event.imageUrl} alt={event.title} className="w-16 h-16 object-cover rounded mr-2" />
+                  )}
+                  <div>
+                    <strong>{new Date(event.date).toDateString()} at {event.time}: {event.title}</strong>
+                    <p className="text-sm text-gray-600">{event.description}</p>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <Button variant="ghost" size="icon" onClick={() => handleEditEvent(event)}>
-                  <Edit className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="icon" onClick={() => handleDeleteEvent(event.id)}>
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </div>
-            </li>
-          ))};
-          {/* MAPPING EVENTS END */}
-          {/* MAPPING EVENTS END */}
-          {/* MAPPING EVENTS END */}
-          {/* MAPPING EVENTS END */}
-          {/* MAPPING EVENTS END */}
+                <div>
+                  <Button variant="ghost" size="icon" onClick={() => handleEditEvent(event)}>
+                    <Edit className="h-4 w-4" />
+                  </Button>
+                  <Button variant="ghost" size="icon" onClick={() => handleDeleteEvent(event.id)}>
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
+              </li>
+            ))};
+            {/* MAPPING EVENTS END */}
+            {/* MAPPING EVENTS END */}
+            {/* MAPPING EVENTS END */}
+            {/* MAPPING EVENTS END */}
+            {/* MAPPING EVENTS END */}
           </ul>
           {/* ADDING EVENTS MODAL */}
           {/* ADDING EVENTS MODAL */}
           {/* ADDING EVENTS MODAL */}
           {/* ADDING EVENTS MODAL */}
           {/* ADDING EVENTS MODAL */}
-            <Dialog open={isAddEventDialogOpen} onOpenChange={setIsAddEventDialogOpen}>
-              <DialogTrigger asChild>
-                <Button className="mt-4">
-                  <PlusCircle className="w-4 h-4 mr-2" />
-                  Add Event
-                </Button>
-              </DialogTrigger>
+          <Dialog open={isAddEventDialogOpen} onOpenChange={setIsAddEventDialogOpen}>
+            <DialogTrigger asChild>
+              <Button className="mt-4">
+                <PlusCircle className="w-4 h-4 mr-2" />
+                Add Event
+              </Button>
+            </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
                 <DialogTitle>Add New Event</DialogTitle>
@@ -278,20 +280,20 @@ export default function CalendarAndEvents() {
                     onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
                     className="col-span-3"
                   />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="event-image-url" className="text-right">
-                      Image URL
-                    </Label>
-                    <Input
-                      id="event-image-url"
-                      value={newEvent.imageUrl}
-                      onChange={(e) => setNewEvent({ ...newEvent, imageUrl: e.target.value })}
-                      className="col-span-3"
-                      placeholder="https://example.com/image.jpg"
-                    />
-                  </div>
                 </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="event-image-url" className="text-right">
+                    Image URL
+                  </Label>
+                  <Input
+                    id="event-image-url"
+                    value={newEvent.imageUrl}
+                    onChange={(e) => setNewEvent({ ...newEvent, imageUrl: e.target.value })}
+                    className="col-span-3"
+                    placeholder="https://example.com/image.jpg"
+                  />
+                </div>
+              </div>
               <DialogFooter>
                 <div className="flex flex-row">
                   <Button className="flex w-40 items-center justify-center h-9 rounded-md border border-input mx-auto px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" type="submit" onClick={handleAddEvent}>Save Event</Button>
