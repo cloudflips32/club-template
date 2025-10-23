@@ -17,18 +17,18 @@ function HeroSection() {
                 className="text-3xl text-white 
                 font-bold tracking-tighter 
                 sm:text-4xl md:text-5xl lg:text-6xl/none
-                border w-fit bg-gradient-to-r blur-xl absolute lg:mb-24 mb-16">
-                Software Engineering Club
+                border w-fit bg-gradient-to-r blur-xl absolute lg:mb-24 mb-16 ml-44">
+                Sample Club
               </h1>
               <h1 
                 className="text-3xl text-white 
                 font-bold tracking-tighter 
                 sm:text-4xl md:text-5xl lg:text-6xl/none relative lg:mb-24 mb-16
               ">
-                Software Engineering Club
+                Sample Club
               </h1>
               <p className="mx-auto max-w-[700px] text-white md:text-xl dark:text-gray-400">
-                Improving the educational experience for programming students here at Florida SouthWestern State College. We review coding fundamentals, engage in workforce interview preparation, and promote the practice of constructive collaboration.
+                Improving the educational experience for potential programmers here at the Sample Technology club. We review coding fundamentals, engage in workforce interview preparation, and promote the practice of constructive collaboration. We are a community of like-minded individuals who are passionate about technology and want to help each other succeed.
               </p>
             </div>
             <div className="space-x-4">

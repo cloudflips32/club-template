@@ -18,7 +18,7 @@ const Join = () => {
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
               <h2 className="text-3xl text-white font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Join Software Engineering Club
+                Join Sample Technology Club
               </h2>
               <p className="mx-auto max-w-[600px] md:text-xl dark:text-gray-400 text-white">
                 Be part of a community that's shaping the future of software engineering.

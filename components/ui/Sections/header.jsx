@@ -51,9 +51,8 @@ export default function Header() {
   return (
     <header className="px-4 lg:px-6 h-14 flex items-center my-4">
       {/* Logo Link */}
-      <Link className="flex items-center justify-center" href="https://www.fsw.edu" aria-label="Go to homepage">
-        <Image src="/images/fsw-buc-logo.png" width={64} height={64} alt="School Logo" />
-        <Image src="/images/fsw-wordmark-logo-white.png" width={128} height={64} alt="school-name" className='mt-2 ml-2' />
+      <Link className="flex items-center justify-center" href="https://www.github.com/cloudflips32" aria-label="Go to homepage">
+        <Image src="/logos/sample-logo.png" width={88} height={64} alt="School Logo" />
       </Link>
 
       {/* Mobile menu toggle button */}
